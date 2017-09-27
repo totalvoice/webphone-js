@@ -1,73 +1,71 @@
 <!-- Exemplo Webphone com interface propria ou oculto -->
 <html>
     <body>
-    <div id="widget-evoline-api-container" style="display:inline" width="10" height="20"></div>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"> </script>
-    <script>
-    //todas as mensagens oriundas do webphone são recebidas aqui.
-    window.onmessage = function(e){
-    
-        if (e.data.message == 'chegandoChamada') {
-            alert('Chegando Chamada de '+e.data.numeroChegando + ' para: '+e.data.numeroDestino);
-        }
-    
-        //chamando, encerrada, conversando
-        if (e.data.message == 'status') {
-            alert('Status: '+e.data.status);
-        }
-    
-        //o id é único e pode ser utilizado na api para recuperação de mais informações (get na api ou webhooks) 
-        if (e.data.message == 'chamada_id') {
-            alert('Chamada_id: '+e.data.chamada_id);
-        }
-    
-        //os erros são finais.
-        if (e.data.message == 'status_erro') {
-            alert('ERRO: '+e.data.status_erro);
-        }
-    
-    };
-    
-    function desligaChamada(){
-        webphone.contentWindow.postMessage({message : 'hangup'}, '*');
-    }
-    
-    function chamaNumero(numero){
-        webphone.contentWindow.postMessage({message : 'chamaNumero', 'numero': numero}, '*');
-    }
-    
-    function atender(){
-        webphone.contentWindow.postMessage({message : 'answer'}, '*');
-    }
-    
-    //para uso com uras
-    function enviaDTMF(meuDTMF){
-        webphone.contentWindow.postMessage({message : 'enviaDTMF', 'dtmf': meuDTMF}, '*');
-    }
-    
-    function mute(){
-        webphone.contentWindow.postMessage({message : 'mute'}, '*');
-    }
-    </script>
-    
-    <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
-    <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
-    
-    <input type="button" onclick="javascript:desligaChamada();" value="Desliga">
-    <input type="button" onclick="javascript:chamaNumero(4025);" value="Chama 4545">
-    <br>
-    <input type="button" onclick="javascript:chamaNumero(48984529558);" value="Chama 48984529558">
-    <br>
-    <input type="button" onclick="javascript:chamaNumero(1136995619);" value="Chama 1136995619">
-    <br>
-    (DTMF: 0,1,2,3,4,5,6,7,8,9,*,#)<br>
-    <input type="button" onclick="javascript:enviaDTMF('1');" value="DTMF 1">
-    <br>
-    <input type="button" onclick="javascript:enviaDTMF('*');" value="DTMF *">
-    <br>
-    <input type="button" onclick="javascript:enviaDTMF('#');" value="DTMF #">
-    <br><input type="button" onclick="javascript:mute();" value="Mute/Unmute">
-    <br>
-    <input type="button" onclick="javascript:atender();" value="Atender">
+        <div id="widget-evoline-api-container" style="display:inline" width="10" height="20"></div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"> </script>
+        <script>
+            //todas as mensagens oriundas do webphone são recebidas aqui.
+            window.onmessage = function(e){
+            
+                if (e.data.message == 'chegandoChamada') {
+                    alert('Chegando Chamada de '+e.data.numeroChegando + ' para: '+e.data.numeroDestino);
+                }
+            
+                //chamando, encerrada, conversando
+                if (e.data.message == 'status') {
+                    alert('Status: '+e.data.status);
+                }
+            
+                //o id é único e pode ser utilizado na api para recuperação de mais informações (get na api ou webhooks) 
+                if (e.data.message == 'chamada_id') {
+                    alert('Chamada_id: '+e.data.chamada_id);
+                }
+            
+                //os erros são finais.
+                if (e.data.message == 'status_erro') {
+                    alert('ERRO: '+e.data.status_erro);
+                }
+            
+            };
+            
+            function desligaChamada(){
+                webphone.contentWindow.postMessage({message : 'hangup'}, '*');
+            }
+            
+            function chamaNumero(numero){
+                webphone.contentWindow.postMessage({message : 'chamaNumero', 'numero': numero}, '*');
+            }
+            
+            function atender(){
+                webphone.contentWindow.postMessage({message : 'answer'}, '*');
+            }
+            
+            //para uso com uras
+            function enviaDTMF(meuDTMF){
+                webphone.contentWindow.postMessage({message : 'enviaDTMF', 'dtmf': meuDTMF}, '*');
+            }
+            
+            function mute(){
+                webphone.contentWindow.postMessage({message : 'mute'}, '*');
+            }
+        </script>
+        <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
+        <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
+        <input type="button" onclick="javascript:desligaChamada();" value="Desliga">
+        <input type="button" onclick="javascript:chamaNumero(4025);" value="Chama 4545">
+        <br>
+        <input type="button" onclick="javascript:chamaNumero(48984529558);" value="Chama 48984529558">
+        <br>
+        <input type="button" onclick="javascript:chamaNumero(1136995619);" value="Chama 1136995619">
+        <br>
+        (DTMF: 0,1,2,3,4,5,6,7,8,9,*,#)<br>
+        <input type="button" onclick="javascript:enviaDTMF('1');" value="DTMF 1">
+        <br>
+        <input type="button" onclick="javascript:enviaDTMF('*');" value="DTMF *">
+        <br>
+        <input type="button" onclick="javascript:enviaDTMF('#');" value="DTMF #">
+        <br><input type="button" onclick="javascript:mute();" value="Mute/Unmute">
+        <br>
+        <input type="button" onclick="javascript:atender();" value="Atender">
     </body>
-    </html>
+</html>
