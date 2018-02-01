@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>Totalvoice</title>
+  <body>
+  <script src="https://unpkg.com/vue"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <div id="widget-evoline-api-container" style="display:inline" width="10" height="20"></div>
+    <div id="app">
+    <div id="totalvoice">
+      <h1>{{ response }}</h1>
+    </div>
+    
+       <div class="display">
+                    <input type="text" v-model="callPhone" style="width: 100%; height: 100%;" class="text-center">
+                </div>
+
+                <button class="btn bg waves-effect btn-call" @click.prevent="callPhone">ae
+                </button>
+   </div>
+<script src="URL_WEBPHONE_API_TOTALVOICE"></script>
+    <script>
+	      new Vue({
+	        el: "#totalvoice",
+	        data(){
+	        	return {
+	                response: "carlos",
+	                numero: "4832830151"
+	            }	
+	        },
+	        created() {
+	        },
+	        methods: {
+                    callPhone: function () {
+                    	webphone.contentWindow.postMessage({
+                            message: 'chamaNumero',
+                            'numero': '7173'
+                        }, '*');
+                    },
+                       answerCall: function () {
+                        webphone.contentWindow.postMessage({
+                            message: 'answer'
+                        }, '*');
+                    }
+
+
+	        },
+	        mounted() {
+                    //this.getAvailableCustomers();
+                    var vm = this;
+                    
+                    window.onmessage = function (e) {
+
+                        //quando receber uma ligacao
+                        if (e.data.message == 'chegandoChamada') {
+                            alert('Chegando Chamada de ' + e.data.numeroChegando + ' para: ' + e.data.numeroDestino + ' chamada_recebida_id: ' + e.data.chamadaRecebidaId);
+                            
+                        }
+                        //conectado, chamando, encerrada, conversando
+                        if (e.data.message == 'status') {
+                            if (e.data.status == 'encerrada') {
+                                this.isCallActive = false;
+                            } else if (e.data.status == 'chamando' || e.data.status == 'conversando') {
+                                this.isCallActive = true;
+                            }
+                        }
+                        //o id é único e pode ser utilizado na api para recuperação de mais informações (get na api ou webhooks)
+                        if (e.data.message == 'chamada_id') {
+                            alert('Chamada_id: ' + e.data.chamada_id);
+                        }
+                        //os erros são finais
+                        if (e.data.message == 'status_erro') {
+                            alert('Sem Permissão: ' + e.data.status_erro);
+                            this.isCallActive = false;
+
+                        }
+                        vm.callPhone()
+                        setTimeout(function(){ 
+
+                        }, 3000);  
+
+
+
+                    };
+                },
+                beforeMount(){
+				    //this.callPhone()
+				 }
+	      });
+    </script>
+  </body>
+</html>
