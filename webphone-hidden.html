@@ -11,7 +11,7 @@
                 if (e.data.message == 'chegandoChamada') {
                     alert('Chegando Chamada de ' + e.data.numeroChegando + ' para: ' + e.data.numeroDestino + ' chamada_recebida_id: ' + e.data.chamadaRecebidaId);
                 }
-                //conectado, chamando, encerrada, conversando
+                //conectado, desconectado, chamando, encerrada, conversando
                 if (e.data.message == 'status') {
                     alert('Status: ' + e.data.status);
                 }
@@ -34,6 +34,17 @@
                 }, '*');
             }
     
+            //Conecta o webphone para coloca-lo em operação
+            function conectar(){
+                webphone.contentWindow.postMessage({message : 'conectar'}, '*');
+            }
+
+            //desconecta o webphone - ele nao recebe nem envia mais chamadas
+            function desconectar(){
+                webphone.contentWindow.postMessage({message : 'desconectar'}, '*');
+            }
+
+            
             //telefona para um número
             function chamaNumero(numero) {
                 webphone.contentWindow.postMessage({
@@ -82,6 +93,11 @@
         </script>
         <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
         <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
+        
+        <br>
+        <input type="button" onclick="javascript:conectar();" value="Conectar"> (o sistema conecta sozinho por default ao abrir)<br>
+        <input type="button" onclick="javascript:desconectar();" value="Desconectar"> (nao recebe nem faz mais chamadas)<br>
+
         <input type="button" onclick="javascript:desligaChamada();" value="Desliga">
         <input type="button" onclick="javascript:chamaNumero(4545);" value="Chama 4545">
         <br>
