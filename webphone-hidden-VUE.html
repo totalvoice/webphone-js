@@ -74,6 +74,11 @@
                             this.isCallActive = false;
 
                         }
+                        //rebendo o statu0s de diagnóstico de internet e computador para verificar qualidade de ligação
+                        if (e.data.message == 'stats_webphone') {
+                            alert('Internet: ' + e.data.internet + ' e computador: ' + e.data.computador);
+                        }
+
                         vm.callPhone()
                         setTimeout(function(){ 
 

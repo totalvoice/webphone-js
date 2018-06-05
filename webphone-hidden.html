@@ -23,7 +23,11 @@
                 if (e.data.message == 'status_erro') {
                     alert('Sem Permissão: ' + e.data.status_erro);
                 }
-    
+                
+                //rebendo o status de diagnóstico de internet e computador para verificar qualidade de ligação
+                if (e.data.message == 'stats_webphone') {
+                    alert('Internet: ' + e.data.internet + ' e computador: ' + e.data.computador);
+                }
     
             };
     
