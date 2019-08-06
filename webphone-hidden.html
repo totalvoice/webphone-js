@@ -13,7 +13,7 @@
                 }
                 //conectado, desconectado, chamando, encerrada, conversando
                 if (e.data.message == 'status') {
-                    alert('Status: ' + e.data.status);
+                    //alert('Status: ' + e.data.status);
                 }
                 //o id é único e pode ser utilizado na api para recuperação de mais informações (get na api ou webhooks) 
                 if (e.data.message == 'chamada_id') {
@@ -21,12 +21,12 @@
                 }
                 //os erros são finais
                 if (e.data.message == 'status_erro') {
-                    alert('Sem Permissão: ' + e.data.status_erro);
+                    //alert('Sem Permissão: ' + e.data.status_erro);
                 }
                 
                 //rebendo o status de diagnóstico de internet e computador para verificar qualidade de ligação
                 if (e.data.message == 'stats_webphone') {
-                    alert('Internet: ' + e.data.internet + ' e computador: ' + e.data.computador);
+                    //alert('Internet: ' + e.data.internet + ' e computador: ' + e.data.computador);
                 }
     
             };
@@ -94,6 +94,18 @@
                     'numeroTelefone': numeroTelefone
                 }, '*');
             }
+
+            function recstart() {
+                webphone.contentWindow.postMessage({
+                    message: 'recStart'
+                }, '*');
+            }
+
+            function recstop() {
+                webphone.contentWindow.postMessage({
+                    message: 'recStop'
+                }, '*');                
+            }
         </script>
         <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
         <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
@@ -103,13 +115,17 @@
         <input type="button" onclick="javascript:desconectar();" value="Desconectar"> (nao recebe nem faz mais chamadas)<br>
 
         <input type="button" onclick="javascript:desligaChamada();" value="Desliga">
-        <input type="button" onclick="javascript:chamaNumero(4545);" value="Chama 4545">
+        <input type="button" onclick="javascript:chamaNumero(4001);" value="Chama 4001">
         <br>
         <input type="button" onclick="javascript:chamaNumero(4832830151);" value="Chama 4832830151">
         <br>
-        <input type="button" onclick="javascript:chamaNumero(48999999999);" value="Chama 48999999999">
+        <input type="button" onclick="javascript:chamaNumero(97988888888);" value="Chama 97988888888">
         <br> (DTMF: 0,1,2,3,4,5,6,7,8,9,*,#)<br>
         <input type="button" onclick="javascript:enviaDTMF('1');" value="DTMF 1">
+        <br>
+        <input type="button" onclick="javascript:enviaDTMF('2');" value="DTMF 2">
+        <br>
+        <input type="button" onclick="javascript:enviaDTMF('0');" value="DTMF 0">
         <br>
         <input type="button" onclick="javascript:enviaDTMF('*');" value="DTMF *">
         <br>
@@ -121,6 +137,12 @@
         <br>
         <input type="button" onclick="transferir('4515');" value="Transferir para 4515">
         <input type="button" onclick="javascript:atender();" value="Atender">
+
+        <br>
+        <br>
+
+        <input type="button" onclick="javascript:recstart();" value="REC Start">
+        <input type="button" onclick="javascript:recstop();" value="REC Stop">
     </body>
     
 </html>
