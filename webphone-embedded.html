@@ -1,0 +1,54 @@
+<!-- Exemplo Webphone com interface propria ou oculto -->
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <style>
+            iframe {
+                display: none;
+            }
+        </style>
+    </head>    
+    <body>
+
+        <a href="#" id="ligar">489999999</a>
+
+        <script>
+
+            $(function() {
+                // Exemplo com jQuery
+                $('body').on('click', "#ligar", function(e) {
+                    e.preventDefault();
+                    $('#totalvoice').show();
+                    chamaNumero($(this).text());
+                });
+                
+            });
+            //todas as mensagens oriundas do webphone são recebidas aqui.
+            window.onmessage = function(e) {
+
+                //quando receber uma ligacao
+                if (e.data.message == 'chegandoChamada') {
+                    $('#totalvoice').show();
+                    alert('Chegando Chamada de ' + e.data.numeroChegando + ' para: ' + e.data.numeroDestino + ' chamada_recebida_id: ' + e.data.chamadaRecebidaId);
+                }
+
+                if (e.data.message == 'status') {
+                    if(e.data.status == 'encerrada') {
+                        $('#totalvoice').hide();
+                    }
+                    alert('Status: ' + e.data.status);
+                }
+            };
+
+            function chamaNumero(numero) {
+                var iframe = document.getElementById("totalvoice");
+                iframe.contentWindow.postMessage({
+                    message: 'chamaNumero',
+                    'numero': numero
+                }, '*');
+            }
+        </script>
+
+        <iframe id="totalvoice" width="500px" height="250px" allow="microphone" src="URL_WEBPHONE_EMBEDDED" frameborder="0"></iframe>        
+    </body>    
+</html>
