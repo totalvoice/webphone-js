@@ -104,6 +104,20 @@ const Webphone = () => {
           message: 'recStop'
       }, '*');                
   }
+  
+  function pauseInQueue(queueId) {
+    webphone.contentWindow.postMessage({
+      message: 'pauseInQueue',
+      queueId: queueId
+    }, '*');
+  }
+
+  function unpauseInQueue(queueId) {
+    webphone.contentWindow.postMessage({
+      message: 'unpauseInQueue',
+      queueId: queueId
+    }, '*');
+  }
 
   React.useEffect(() => {
     if (webphoneRef.current) {
@@ -153,6 +167,10 @@ const Webphone = () => {
         <br />
         <input type="button" onClick={recstart} value="REC Start" />
         <input type="button" onClick={recstop} value="REC Stop" />
+        <br />
+        <br />
+        <input type="button" onClick={pauseInQueue} value="Pausar em todas filas" />
+        <input type="button" onClick={unpauseInQueue} value="Despausar em todas filas" />
     </React.Fragment>
    
   );
