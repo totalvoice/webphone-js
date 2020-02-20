@@ -105,17 +105,17 @@ const Webphone = () => {
       }, '*');                
   }
   
-  function pauseInQueue(queueId) {
+  function pausarNaFila(filaId) {
     webphone.contentWindow.postMessage({
-      message: 'pauseInQueue',
-      queueId: queueId
+      message: 'pausarNaFila',
+      filaId: filaId
     }, '*');
   }
 
-  function unpauseInQueue(queueId) {
+  function despausarNaFila(filaId) {
     webphone.contentWindow.postMessage({
-      message: 'unpauseInQueue',
-      queueId: queueId
+      message: 'despausarNaFila',
+      filaId: filaId
     }, '*');
   }
 
@@ -169,8 +169,8 @@ const Webphone = () => {
         <input type="button" onClick={recstop} value="REC Stop" />
         <br />
         <br />
-        <input type="button" onClick={pauseInQueue} value="Pausar em todas filas" />
-        <input type="button" onClick={unpauseInQueue} value="Despausar em todas filas" />
+        <input type="button" onClick={pausarNaFila} value="Pausar em todas filas" />
+        <input type="button" onClick={despausarNaFila} value="Despausar em todas filas" />
     </React.Fragment>
    
   );

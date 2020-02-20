@@ -104,21 +104,21 @@
             function recstop() {
                 webphone.contentWindow.postMessage({
                     message: 'recStop'
-                }, '*');                
+                }, '*');
             }
 
-            function pauseInQueue(queueId) {
+            function pausarNaFila(filaId) {
                 webphone.contentWindow.postMessage({
-                    message: 'pauseInQueue',
-                    queueId: queueId
-                }, '*');                
+                    message: 'pausarNaFila',
+                    filaId: filaId
+                }, '*');
             }
 
-            function unpauseInQueue(queueId) {
+            function despausarNaFila(filaId) {
                 webphone.contentWindow.postMessage({
-                    message: 'unpauseInQueue',
-                    queueId: queueId
-                }, '*');                
+                    message: 'despausarNaFila',
+                    filaId: filaId
+                }, '*');
             }
         </script>
         <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
@@ -161,8 +161,8 @@
         <br>
         <br>
         
-        <input type="button" onclick="javascript:pauseInQueue();" value="Pausar em todas filas">
-        <input type="button" onclick="javascript:unpauseInQueue();" value="Despausar em todas filas">
+        <input type="button" onclick="javascript:pausarNaFila();" value="Pausar em todas filas">
+        <input type="button" onclick="javascript:despausarNaFila();" value="Despausar em todas filas">
     </body>
     
 </html>
