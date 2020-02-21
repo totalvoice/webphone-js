@@ -104,7 +104,21 @@
             function recstop() {
                 webphone.contentWindow.postMessage({
                     message: 'recStop'
-                }, '*');                
+                }, '*');
+            }
+
+            function pausarNaFila(filaId) {
+                webphone.contentWindow.postMessage({
+                    message: 'pausarNaFila',
+                    filaId: filaId
+                }, '*');
+            }
+
+            function despausarNaFila(filaId) {
+                webphone.contentWindow.postMessage({
+                    message: 'despausarNaFila',
+                    filaId: filaId
+                }, '*');
             }
         </script>
         <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
@@ -143,6 +157,12 @@
 
         <input type="button" onclick="javascript:recstart();" value="REC Start">
         <input type="button" onclick="javascript:recstop();" value="REC Stop">
+
+        <br>
+        <br>
+        
+        <input type="button" onclick="javascript:pausarNaFila();" value="Pausar em todas filas">
+        <input type="button" onclick="javascript:despausarNaFila();" value="Despausar em todas filas">
     </body>
     
 </html>

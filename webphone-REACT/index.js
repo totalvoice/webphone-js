@@ -104,6 +104,20 @@ const Webphone = () => {
           message: 'recStop'
       }, '*');                
   }
+  
+  function pausarNaFila(filaId) {
+    webphone.contentWindow.postMessage({
+      message: 'pausarNaFila',
+      filaId: filaId
+    }, '*');
+  }
+
+  function despausarNaFila(filaId) {
+    webphone.contentWindow.postMessage({
+      message: 'despausarNaFila',
+      filaId: filaId
+    }, '*');
+  }
 
   React.useEffect(() => {
     if (webphoneRef.current) {
@@ -153,6 +167,10 @@ const Webphone = () => {
         <br />
         <input type="button" onClick={recstart} value="REC Start" />
         <input type="button" onClick={recstop} value="REC Stop" />
+        <br />
+        <br />
+        <input type="button" onClick={pausarNaFila} value="Pausar em todas filas" />
+        <input type="button" onClick={despausarNaFila} value="Despausar em todas filas" />
     </React.Fragment>
    
   );
