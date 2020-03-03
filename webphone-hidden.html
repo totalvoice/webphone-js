@@ -120,6 +120,20 @@
                     filaId: filaId
                 }, '*');
             }
+
+            function entrarNaFila(filaId) {
+                webphone.contentWindow.postMessage({
+                    message: 'entrarNaFila',
+                    filaId: filaId
+                }, '*');
+            }
+
+            function sairDaFila(filaId) {
+                webphone.contentWindow.postMessage({
+                    message: 'sairDaFila',
+                    filaId: filaId
+                }, '*');
+            }
         </script>
         <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
         <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
@@ -163,6 +177,12 @@
         
         <input type="button" onclick="javascript:pausarNaFila();" value="Pausar em todas filas">
         <input type="button" onclick="javascript:despausarNaFila();" value="Despausar em todas filas">
+
+        <br>
+        <br>
+        
+        <input type="button" onclick="javascript:entrarNaFila(47);" value="Entrar na fila 47">
+        <input type="button" onclick="javascript:sairDaFila(47);" value="Sair da fila 47">
     </body>
     
 </html>

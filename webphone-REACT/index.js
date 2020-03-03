@@ -119,6 +119,20 @@ const Webphone = () => {
     }, '*');
   }
 
+  function entrarNaFila(filaId) {
+    webphone.contentWindow.postMessage({
+      message: 'entrarNaFila',
+      filaId: filaId
+    }, '*');
+  }
+
+  function sairDaFila(filaId) {
+    webphone.contentWindow.postMessage({
+      message: 'sairDaFila',
+      filaId: filaId
+    }, '*');
+  }
+
   React.useEffect(() => {
     if (webphoneRef.current) {
       window.addEventListener('message', windowListener);
@@ -171,6 +185,10 @@ const Webphone = () => {
         <br />
         <input type="button" onClick={pausarNaFila} value="Pausar em todas filas" />
         <input type="button" onClick={despausarNaFila} value="Despausar em todas filas" />
+        <br />
+        <br />
+        <input type="button" onClick={() => entrarNaFila(47)} value="Entrar na fila 47" />
+        <input type="button" onClick={() => sairDaFila(47)} value="Sair da fila 47" />
     </React.Fragment>
    
   );
