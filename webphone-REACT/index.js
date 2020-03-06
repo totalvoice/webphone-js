@@ -29,16 +29,16 @@ const Webphone = () => {
     }
 
     if(e.data.message == 'pausou_na_fila') {
-      // Evento chamado quando o ramal é pausado na fila
+      // Evento disparado quando o ramal é pausado na fila
     }
     else if(e.data.message == 'despausou_na_fila') {
-      // Evento chamado quando o ramal é despausado na fila
+      // Evento disparado quando o ramal é despausado na fila
     }
     else if(e.data.message == 'entrou_na_fila') {
-      // Evento chamado quando o ramal entra na fila
+      // Evento disparado quando o ramal entra na fila
     }
     else if(e.data.message == 'saiu_da_fila') {
-      // Evento chamado quando o ramal sai da fila
+      // Evento disparado quando o ramal sai da fila
     }
   };
 
