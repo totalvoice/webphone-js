@@ -10,18 +10,3 @@ Para configurar o seu webphone neste script você deve:
 <!-- URL que foi pega pela API no /webphone - cria o iframe e injeta o webphone-->
 <script src="URL_WEBPHONE_API_TOTALVOICE"></script>
 ```
-
-### Utilização do webphone com React
-
-Siga os passos citados anteriormente para gerar a URL do seu webphone, no entanto, informe sempre o tipo como EMBEDDED.
-* adicione a url gerada no valor do src no iframe do index.js dentro da pasta webphone-REACT
-```
-<iframe
-  allow="microphone"
-  src="URL_WEBPHONE_API_TOTALVOICE"
-  style={{ display: 'none' }}
-  ref={webphoneRef}
-  />
-```
-* mantenha na estilização do iframe o `display: none` se quiser criar seus próprios componentes para o webphone ou tire esta opção se preferir utilizar o visual padrão do webphone embedded
-* para rodar o projeto, acesse a pasta webphone-REACT, utilize `npm install ` para instalar as dependências e utilize `npm run dev` para rodar em modo de desenvolvimento ou `npm run build ` para gerar um build otimizado dentro da pasta `public ` 
